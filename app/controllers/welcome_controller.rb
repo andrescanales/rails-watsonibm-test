@@ -14,10 +14,12 @@ class WelcomeController < ApplicationController
 
   def results
   	if params[:account]
+  		# 1. First we obtain 50 tweets from the account
   		tweets = MyTwitter.user_timeline(params[:account], count: 50)
 
   		tweets_json = []
 
+  		# 2. Next we create a simple file with the IBM api format 
 		  tweets.each do |t|
 		    data_json = {
 		      "content" => t.text,
@@ -32,12 +34,15 @@ class WelcomeController < ApplicationController
 		    f.write(tweets_json.to_json)
 		    f.write("}")
 		  end
+
+		  # 3. We need to use the Chunked Requests feature of excon http client
 		  file = File.open('public/tweets.json')
 
 			chunker = lambda do
 			  file.read(Excon.defaults[:chunk_size]).to_s
 			end
 
+			# 3.1. Making the request to the api
 			response = Excon.post(
 				'https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2017-10-13&consumption_preferences=true&raw_scores=true',
 				:user => Rails.application.secrets.ibm_user, :password => Rails.application.secrets.ibm_password,
@@ -45,16 +50,18 @@ class WelcomeController < ApplicationController
 				:headers => { "Content-Type" => "application/json" }
 			)
 
-			# Arrays for chart js data:
+			# 4. Finally we configurate the arrays for chart js data:
 	 		personalities = []
 	 		percentages = []
-	 		colors = []
+	 		colours = []
 
 			json_response = JSON.parse(response.body)
 			json_response['personality'].each do |d|
 				personalities << d['name']
 				percentages << d['percentile'] * 100
-				colors << "rgba(151,187,205,0.2)"
+				# Random colors for chart
+				colour = "#"+"%06x" % (rand * 0xffffff)
+				colours << colour.to_s
 			end
 
 			@data = {
@@ -62,7 +69,7 @@ class WelcomeController < ApplicationController
 			  datasets: [
 			    {
 			        label: "My First dataset",
-			        fillColors: colors,
+			        background_color: colours,
 			        data: percentages
 			    }
 			  ]

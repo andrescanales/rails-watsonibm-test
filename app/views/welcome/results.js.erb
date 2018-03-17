@@ -1,2 +1,3 @@
 $('.loader').hide();
+$('#result').empty();
 $('#result').hide().after('<%= j render partial: "result", locals: { data: @data }%>');
