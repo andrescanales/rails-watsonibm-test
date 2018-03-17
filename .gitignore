@@ -17,3 +17,6 @@
 /yarn-error.log
 
 .byebug_history
+
+# Added by andres:
+config/secrets.yml
