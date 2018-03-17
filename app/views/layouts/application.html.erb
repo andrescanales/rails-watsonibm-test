@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicTest</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="bg-light">
+  	<div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Music suggestion</h2>
+        <p class="lead">Hello, my name is Andres Canales and I'm a developer making a test to give you a type of music suggestion based on your Watson personality. Below is an example of this, just introduce your twitter account and we will do the rest. Enjoy!</p>
+      </div>
+
+      <div class="container">
+        <%= yield %>
+      </div>
+    	
+
+  </body>
+</html>

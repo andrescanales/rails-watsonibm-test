@@ -1,0 +1,57 @@
+<div class="form-row align-items-center">
+  <div class="col-sm-2">
+  </div>
+
+  <div class="col-sm-8">
+    <center>
+      <h5 class="text-gray-soft text-regular">Please enter your twitter account: </h5>
+
+      <%= form_tag({action: :results}, multipart: true, remote: true) do %>
+        <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <%= text_field_tag :account, '', class: "form-control" %>
+          <%= submit_tag("Discover", class: "btn btn-primary", id: "btn-submit") %>
+        </div>
+      <% end %>
+    </center>
+
+    <center><div class="loader" style="display: none;"></div></center>
+
+  </div>
+
+  <div class="col-sm-2">
+  </div>
+  
+</div>
+
+
+<div id="result"></div>
+
+<!-- Loader simple style -->
+<style type="text/css">
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #007bff; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }  
+</style>
+
+<!-- Loader display -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $( "form" ).submit(function( ) {
+      $('.loader').css('margin-top', '35px').show();
+    });
+  });
+</script>
