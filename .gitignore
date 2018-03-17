@@ -19,4 +19,4 @@
 .byebug_history
 
 # Added by andres:
-config/secrets.yml
+config/secrets_example.yaml
