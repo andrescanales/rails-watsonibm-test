@@ -23,7 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: music-test_development
+  database: music-test
+  username: root
+  password: root
+  host: "192.168.33.10"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: music-test_production
-  username: music-test
-  password: <%= ENV['MUSIC-TEST_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>

@@ -1,3 +1,49 @@
-<h2>Resultados:</h2>
-<p><%#= data.inspect %></p>
-<%= doughnut_chart data %>
+<div class="container">
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-sm-2">
+			
+		</div>
+		<div class="col-sm-8">
+			<h2>Results:</h2>
+			<div>
+				<%= doughnut_chart data %>
+			</div>
+			<div>
+				<div class="alert alert-primary" role="alert" style="margin-top: 20px;">
+				  <center>
+				  	Dominant personality: <strong><%= dominant_personality %></strong><br>
+				  </center>
+				  <center>
+				  	Music genders for you: <strong><%= music %></strong>
+				</div>
+				<table class="table" style="margin-top: 30px;">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col"><center>Personality</center></th>
+				      <th scope="col"><center>Percentage(%)</center></th>
+				      <th scope="col"><center>Facet</center></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<%#= json.inspect %>
+				  	<% json['personality'].each do |d| %> 
+				    <tr>
+				      <td><center><%= d['name']%></center></td>
+				      <td><center><%= '%.2f' % (d['percentile'] * 100) %></center></td>
+				      <td>
+				      <% d['children'].each do |f|%>
+				      	<%= f['name'] + ' ' %>
+				      <% end %>
+				      </td>
+				    </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				
+			</div>
+		</div>
+		<div class="col-sm-2">
+			
+		</div>
+	</div>
+</div>

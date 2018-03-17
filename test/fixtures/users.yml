@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  primary_trait: MyString
+  secondary_trait: MyString
+  tertiary_trait: MyString
+  music_recomendation: MyString
+
+two:
+  username: MyString
+  primary_trait: MyString
+  secondary_trait: MyString
+  tertiary_trait: MyString
+  music_recomendation: MyString
