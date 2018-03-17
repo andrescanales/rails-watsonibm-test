@@ -40,7 +40,7 @@ class WelcomeController < ApplicationController
 
 			response = Excon.post(
 				'https://gateway.watsonplatform.net/personality-insights/api/v3/profile?version=2017-10-13&consumption_preferences=true&raw_scores=true',
-				:user => 'eab05922-519b-4145-b77e-2485002f5824', :password => '',
+				:user => Rails.application.secrets.ibm_user, :password => Rails.application.secrets.ibm_password,
 				:request_block => chunker,
 				:headers => { "Content-Type" => "application/json" }
 			)
