@@ -5,13 +5,21 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 2.4.3
 
-* System dependencies
+* Rails version: 5.1.3
 
-* Configuration
+* Enviroment variables required: 
+ibm_user
+ibm_password
+consumer_key
+consumer_secret
+access_token
+access_token_secret
 
-* Database creation
+And your own db credentials
+
+* Database: postgres
 
 * Database initialization
 
